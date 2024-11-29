@@ -7,9 +7,9 @@
 apk_name="luci-app-speedtest"
 version="2.2"
 
-echo -e "\033[34m🔄 Updating OPKG \033[0m"
-if ! opkg update > /dev/null; then
-    echo -e "\033[31m❌ Failed to update OPKG \033[0m"
+echo -e "\033[34m🔄 Updating APK \033[0m"
+if ! apk update > /dev/null; then
+    echo -e "\033[31m❌ Failed to update APK \033[0m"
     exit 1
 fi
 
@@ -20,7 +20,7 @@ if ! curl -s -o "/tmp/${apk_name}_${version}_all.ipk" -LO "https://github.com/an
 fi
 
 echo -e "\033[34m📦 Installing $apk_name \033[0m"
-if ! opkg install "/tmp/${apk_name}_${version}_all.ipk" > /dev/null; then
+if ! apk add "/tmp/${apk_name}_${version}_all.ipk" > /dev/null; then
     echo -e "\033[31m❌ Failed to install $apk_name \033[0m"
     exit 1
 fi
